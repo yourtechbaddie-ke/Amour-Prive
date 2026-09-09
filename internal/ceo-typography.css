@@ -1,0 +1,16 @@
+/* CEO Office typography — aligned with the Independent Travel Curator portal, with improved readability. */
+body{font-family:Manrope,system-ui,sans-serif;font-size:15px}
+.logo b{font-family:Allura,cursive;font-weight:400}
+.logo small,.meta,.ey,.field label,.stat span,.tag,.tabs button,.btn,.tab,.linkbtn{font-family:'DM Mono',monospace}
+.hero h1,.surface h2,.row b{font-family:'Playfair Display',serif}
+.meta,.ey,.field label,.stat span,.tag{font-size:10px;line-height:1.4;letter-spacing:.14em}
+.tabs button,.btn,.tab,.linkbtn{font-size:10px;line-height:1.35;letter-spacing:.11em}
+.field label{margin-bottom:10px}
+.field input{font-family:Manrope,system-ui,sans-serif;font-size:16px;line-height:1.5}
+.hint{font-family:Manrope,system-ui,sans-serif;font-size:13px;line-height:1.7}
+.error{font-family:Manrope,system-ui,sans-serif;font-size:14px;line-height:1.5}
+.hero p,.row small{font-family:Manrope,system-ui,sans-serif;font-size:15px;line-height:1.8}
+.surface h2{font-size:32px}
+.row b{font-size:17px}
+.stat b{font-family:'DM Mono',monospace}
+@media(max-width:500px){body{font-size:15px}.meta,.ey,.field label,.stat span,.tag{font-size:10px}.tabs button,.btn,.tab,.linkbtn{font-size:10px}.field input{font-size:16px}.hint{font-size:13px}.hero p,.row small{font-size:14px}}
