@@ -1,0 +1,39 @@
+name: Fix portal dashboard session and palette
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-portal-session-and-palette.yml'
+  workflow_dispatch:
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch portal API and palette
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          p=Path('internal/admin-server.js')
+          s=p.read_text()
+          old="app.get('/api/leads',async(q,r)=>{const x=await crm('/api/leads',{headers:{Cookie:q.headers.cookie||'',Authorization:q.headers.authorization||''}});r.status(x.status).json(x.data)});"
+          new="app.get('/api/leads',async(q,r)=>{const x=await crm('/api/portal/data',{headers:{Authorization:q.headers.authorization||''}});r.status(x.status).json(x.data?.leads||[])});"
+          if old in s:
+              s=s.replace(old,new,1)
+          p.write_text(s)
+
+          p=Path('internal/dark-orchid.css')
+          p.write_text('''/* Amour Privé — Dark Orchid / Velvet / Alabaster palette */
+          :root{--b:#5A214F;--bd:#2A1028;--r:#9A5B8F;--i:#F5EDE8;--c:#D8B27C;--e:#F5EDE8;--m:#C5B5C1;--l:#9A5B8F33}
+          body{background:radial-gradient(circle at 82% 8%,#9A5B8F55,transparent 32%),radial-gradient(circle at 10% 90%,#2A102888,transparent 40%),linear-gradient(135deg,#090609,#2A1028 58%,#090609);color:var(--e)}
+          .top{border-bottom-color:#9A5B8F44;background:#090609E8}.logo,.topmeta,.ey,.field label,.tag{color:#D8B27C}.logo small{color:#C78ABB}.loginbox,.surface,.box{background:rgba(42,16,40,.78);border-color:#9A5B8F55;box-shadow:0 30px 90px #05020599}.tabs{border-color:#9A5B8F44}.tabs button.active{color:#E2B8D9;border-color:#9A5B8F}.field input{border-color:#9A5B8F66;color:var(--i);caret-color:#D8B27C;background:#09060966}.field input:focus{border-bottom-color:#D8B27C;box-shadow:0 1px 0 #D8B27C}.btn{border-color:#D8B27C;background:#5A214F;color:#F5EDE8}.btn:hover{background:#7A356B}.error{color:#E3B5C4}.stats .stat{background:linear-gradient(145deg,#5A214F,#2A1028);border-color:#D8B27C66}.stat b{color:#D8B27C}.stat span{color:var(--i)}.nav button,.tab{background:#35142F;color:#E2B8D9;border-color:#9A5B8F55}.nav button:hover,.tab:hover{background:#5A214F;color:#F5EDE8}.row{border-color:#9A5B8F33}.linkbtn,.password-toggle{color:#E2B8D9}
+          ''')
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add internal/admin-server.js internal/dark-orchid.css
+          git commit -m "Fix CEO dashboard session loop and Dark Orchid portal theme" || true
+          git push
