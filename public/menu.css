@@ -1,0 +1,20 @@
+/* Amour Privé — discreet global menu */
+.menu-toggle{display:none;align-items:center;gap:12px;background:rgba(6,59,61,.78);border:1px solid rgba(233,225,213,.28);color:var(--pearl);padding:12px 15px;cursor:pointer;font:8px var(--mono);letter-spacing:.16em;text-transform:uppercase;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:.3s}
+.menu-toggle:hover{background:var(--teal-2);border-color:rgba(233,225,213,.55)}
+.menu-toggle .menu-icon{display:flex;flex-direction:column;gap:4px;width:17px}
+.menu-toggle .menu-icon i{display:block;height:1px;width:100%;background:currentColor;transition:.25s}
+.menu-panel{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;background:rgba(4,12,12,.97);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s,visibility .3s;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.menu-panel.open{opacity:1;visibility:visible;pointer-events:auto}
+.menu-panel-inner{width:min(760px,calc(100% - 44px));padding:38px 0}
+.menu-panel-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:42px;border-bottom:1px solid rgba(233,225,213,.14);padding-bottom:25px}
+.menu-panel-head .logo>span{font-size:36px}
+.menu-close{border:1px solid rgba(233,225,213,.28);background:transparent;color:var(--pearl);width:42px;height:42px;cursor:pointer;font:16px var(--sans);transition:.25s}
+.menu-close:hover{background:var(--teal-2)}
+.menu-links{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid rgba(233,225,213,.08)}
+.menu-links a{padding:19px 4px;border-bottom:1px solid rgba(233,225,213,.08);font:400 clamp(24px,3vw,38px) var(--serif);color:var(--pearl);transition:.25s}
+.menu-links a:hover{color:#9bc9c2;padding-left:10px}
+.menu-panel-cta{display:inline-flex;margin-top:32px;padding:15px 19px;border:1px solid rgba(233,225,213,.35);font:9px var(--mono);letter-spacing:.12em;text-transform:uppercase}
+.menu-panel-cta:hover{background:var(--teal-2)}
+body.menu-open{overflow:hidden}
+@media(max-width:900px){header nav,header>.cta{display:none}.menu-toggle{display:flex}header{height:88px;padding:0 22px}.logo>span{font-size:27px}.logo>small{font-size:6px}.menu-panel-inner{padding:25px 0}.menu-panel-head{margin-bottom:28px}.menu-links{grid-template-columns:1fr}.menu-links a{padding:16px 2px;font-size:29px}.menu-panel-cta{margin-top:25px}}
+@media(min-width:901px){header .menu-toggle{display:flex}}
