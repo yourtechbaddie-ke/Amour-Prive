@@ -13,4 +13,16 @@ body{font-family:Manrope,system-ui,sans-serif;font-size:15px}
 .surface h2{font-size:32px}
 .row b{font-size:17px}
 .stat b{font-family:'DM Mono',monospace}
+/* Remove the white authentication foreground and restore readable dark luxury styling. */
+.login .box{background:rgba(6,59,61,.92);border:1px solid rgba(14,119,113,.55);box-shadow:0 30px 90px rgba(2,5,6,.55);color:#E9E1D5}
+.login .box .ey,.login .box .field label{color:#0E7771}
+.login .box .hero h1,.login .box .hero p,.login .box .hint{color:#E9E1D5}
+.login .box .hero h1 i{color:#8FD3CD}
+.login .box .tabs{border-color:rgba(14,119,113,.35)}
+.login .box .tabs button{color:#A9BBB8}
+.login .box .tabs button.active{color:#8FD3CD;border-color:#0E7771}
+.login .box .field input{background:rgba(5,7,8,.45);border-bottom-color:rgba(14,119,113,.5);color:#E9E1D5}
+.login .box .field input::placeholder{color:#8FA6A3}
+.login .box .hint{color:#A9BBB8}
+.login .box .error{color:#B9BE8F}
 @media(max-width:500px){body{font-size:15px}.meta,.ey,.field label,.stat span,.tag{font-size:10px}.tabs button,.btn,.tab,.linkbtn{font-size:10px}.field input{font-size:16px}.hint{font-size:13px}.hero p,.row small{font-size:14px}}
